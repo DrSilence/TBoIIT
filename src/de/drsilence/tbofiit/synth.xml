@@ -1,0 +1,35 @@
+
+<synth>
+
+ <!-- Style that all regions will use -->
+  <style id="backingStyle">
+    <!-- Make all the regions opaque-->
+    <opaque value="TRUE"/>
+    <font name="Dialog" size="14"/>
+    <state>
+      <color value="#D8D987" type="BACKGROUND"/>
+      <color value="RED" type="FOREGROUND"/>
+    </state>
+  </style>
+  <bind style="backingStyle" type="region" key=".*"/>
+  
+  <style id="menuitem">
+  	<state>
+      <color value="WHITE" type="BACKGROUND"/>
+      <color value="BLACK" type="TEXT_FOREGROUND"/>
+    </state>
+  </style>
+  <bind style="menuitem" type="region" key="MenuItem"/>
+  <bind style="menuitem" type="region" key="PopupMenu"/>
+  <bind style="menuitem" type="region" key="Menu"/>
+  
+  <style id="collectedItem">
+  	<opaque value="TRUE"/>
+  	<state>
+      <color value="#FF00FF" type="BACKGROUND"/>
+      <color value="#000000" type="TEXT_FOREGROUND"/>
+    </state>
+  </style>
+  <bind style="collectedItem" type="name" key="collectedItem"/>
+      
+</synth>

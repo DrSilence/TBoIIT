@@ -14,5 +14,6 @@
 	"guppyNeeded":       3,
 	"itemPanelCols":     3,
 	
+	"defaultIcon":       "data/images/questionmark.png",
 	"itemDetailsLink":   "http://platinumgod.co.uk/rebirth?id=$ID"
 }
