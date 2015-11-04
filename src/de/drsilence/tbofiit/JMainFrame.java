@@ -38,7 +38,7 @@ public class JMainFrame extends JFrame {
 	private static final String APP_SESSINGS_ERROR   = "Can't load 'data/settings.json'!";
 	private static final String APP_ITEMDB_ERROR     = "Can't load 'data/items.json'!";
 	
-//Save rel.:	
+//Save rel. default values:	
 	private static final Color  APP_COLOR_TEXT       = Color.BLACK;
 	private static final Color  APP_COLOR_BACKGROUND = Color.MAGENTA;
 	private static int          APP_WINDOW_XPOS      = 100;
@@ -70,6 +70,23 @@ public class JMainFrame extends JFrame {
 	JsonObject   settings;
 	JsonObject   itemDB;
 	ImageManager imagemanager;
+	
+//from settings file:
+	int     windowPosX;
+	int     windowPosY;
+	int     windowWidth;
+	int     windowHeight;
+	Color   lastAddedColor;
+	Color   backgroundColor;
+	Color   textColor;
+	int     scrollDelay;
+	int     scrollSpeed;
+    boolean doLongFloorNames;
+    int     lotfNeeded;
+	int     guppyNeeded;
+	int     itemPanelCols;
+	String  defaultIcon;
+	String  itemDetailsLink;
 	
 	private static JsonObject loadJson(String file) {
 		try {
@@ -160,14 +177,26 @@ public class JMainFrame extends JFrame {
 	}
 	
 	private void setSettings() {
-		this.setLocation( (Integer)this.settings.getValue( "windowPosX",      APP_WINDOW_XPOS   ) , 
-				          (Integer)this.settings.getValue( "windowPosY",      APP_WINDOW_YPOS   ) );
-		this.setSize(	  (Integer)this.settings.getValue( "windowWidth",     APP_WINDOW_WIDTH  ) , 
-				          (Integer)this.settings.getValue( "windowHeight",    APP_WINDOW_HEIGHT ) );
-		this.getContentPane().setForeground( 
-			Color.decode(  (String)this.settings.getValue( "textColor",       APP_COLOR_TEXT ) ) );
-		this.getContentPane().setBackground( 
-			Color.decode(  (String)this.settings.getValue( "backgroundColor", APP_COLOR_BACKGROUND ) ) );
+		this.windowPosX       =               (Integer)this.settings.getValue( "windowPosX",       APP_WINDOW_XPOS   );
+		this.windowPosY       =               (Integer)this.settings.getValue( "windowPosY",       APP_WINDOW_YPOS   );
+		this.windowWidth      =               (Integer)this.settings.getValue( "windowWidth",      APP_WINDOW_WIDTH  );
+		this.windowHeight     =               (Integer)this.settings.getValue( "windowHeight",     APP_WINDOW_HEIGHT );
+		this.lastAddedColor   = Color.decode(  (String)this.settings.getValue( "lastAddedColor",   null           )  );
+		this.backgroundColor  = Color.decode(  (String)this.settings.getValue( "backgroundColor",  APP_COLOR_BACKGROUND )  );
+		this.textColor        = Color.decode(  (String)this.settings.getValue( "textColor",        APP_COLOR_TEXT )  );
+		this.scrollDelay      =               (Integer)this.settings.getValue( "scrollDelay",      null              );
+		this.scrollSpeed      =               (Integer)this.settings.getValue( "scrollSpeed",      null              );
+		this.doLongFloorNames =               (boolean)this.settings.getValue( "doLongFloorNames", null              );
+		this.lotfNeeded       =               (Integer)this.settings.getValue( "lotfNeeded",       null              );
+		this.guppyNeeded      =               (Integer)this.settings.getValue( "guppyNeeded",      null              );
+		this.itemPanelCols    =               (Integer)this.settings.getValue( "itemPanelCols",    null              );
+		this.defaultIcon      =                (String)this.settings.getValue( "defaultIcon",      null              );
+		this.itemDetailsLink  =                (String)this.settings.getValue( "itemDetailsLink",  null              );
+		
+		this.setLocation( this.windowPosX , this.windowPosY   );
+		this.setSize(     this.windowWidth, this.windowHeight );
+		this.getContentPane().setForeground( this.textColor );
+		this.getContentPane().setBackground( this.backgroundColor );
 	}
 	
 	private void getSettings() {
